@@ -19,13 +19,14 @@ Becomes:
 ------------------------------------------------------------------------------------------------ */
 
 function transformToLis(obj){
-  let result = [];
-  for (const [key, value] of Object.entries(obj)) {
-    result.push(`<li>${key}: ${value}</li>`);
+  let tag = '<li>';
+  let closingTag = '</li>';
+  let newArray = [];
+  for (const [key, value] of Object.entries(obj)){
+    newArray.push(`${tag}${key}: ${value}${closingTag}`);
   }
-
-  return result;
-}
+  return newArray;
+};
 
 /* ------------------------------------------------------------------------------------------------
 CHALLENGE 2
@@ -38,7 +39,15 @@ For example, count(5, [[1, 3, 5, 7, 9], [5, 5, 5], [1, 2, 3]]) returns 4.
 ------------------------------------------------------------------------------------------------ */
 
 const count = (target, input) => {
-  return input.flat().reduce((previous, current) => current === target ? previous + 1 : previous, 0);
+  let targetCount = 0;
+  input.forEach((nestedArray) => {
+    nestedArray.forEach(num => {
+      if (num === target) {
+        targetCount++;
+      }
+    });
+  });
+  return targetCount;
 };
 
 /* ------------------------------------------------------------------------------------------------
@@ -52,7 +61,13 @@ For example, [[1, 2, 3, 4, 5], [6, 7, 2, 4, 5, 7], [9, 2, 3, 6,]] returns 66.
 ------------------------------------------------------------------------------------------------ */
 
 const totalSum = (input) => {
-  return input.flat().reduce((previous, current) => previous + current, 0);
+  let sum = 0;
+  input.forEach(secondArray => {
+    secondArray.forEach(num => {
+      sum = sum + num;
+    });
+  });
+  return sum;
 };
 
 /* ------------------------------------------------------------------------------------------------
@@ -68,7 +83,21 @@ For example, [ [0,2,5,4], [2,4,10], [] ] should return [ [1, 32], [1024], [] ].
 ------------------------------------------------------------------------------------------------ */
 
 const divisibleByFiveTwoToThePower = (input) => {
-  return input.map(array => array.filter(element => typeof element === 'number' && element % 5 === 0).map(element => Math.pow(2, element)));
+  let newArray = [];
+  input.forEach(secondArray => {
+    let newNestedArray = [];
+    secondArray.map(value => {
+      if(typeof value != typeof 5 ){
+        return;
+      } else if (value % 5 != 0 ){
+        return;
+      } else {
+        newNestedArray.push(Math.pow(2, value));
+      }
+    });
+    newArray.push(newNestedArray);
+  });
+  return newArray;
 };
 
 /* ------------------------------------------------------------------------------------------------
@@ -134,7 +163,15 @@ let starWarsData = [{
 }];
 
 let findMaleAndFemale = (data) => {
-  return data.filter(element => element.gender === 'male' || element.gender === 'female').map(element => element.name).join(' and ');
+  let newStr = '';
+  data.forEach((v, i) => {
+    if(v.gender == 'male' || v.gender == 'female' ) {
+      newStr = newStr + `${v.name},`
+    }
+  });
+  let chainResult = newStr.slice(0, -1).split(',')
+    .join(' and ');
+  return chainResult;
 };
 
 /* ------------------------------------------------------------------------------------------------
@@ -144,7 +181,15 @@ Write a function named findShortest that, given the Star Wars data from Challeng
 ------------------------------------------------------------------------------------------------ */
 
 let findShortest = (data) => {
-  return data.reduce((previous, current) => parseInt(current.height) < parseInt(previous.height) ? current : previous, data[0]).name;
+  let name = '';
+  let mass = 500;
+  data.forEach(obj => {
+    if (parseInt(obj.mass) < mass){
+      mass = parseInt(obj.mass);
+      name = obj.name;
+    }
+  });
+  return name;
 };
 
 /* ------------------------------------------------------------------------------------------------
