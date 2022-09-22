@@ -9,12 +9,7 @@ Write a function named raisedToTheThird that takes in an array of numbers and re
 ------------------------------------------------------------------------------------------------ */
 
 const raisedToTheThird = (arr) => {
-  let newArray1 = [];
-  arr.forEach(element => {
-    newArray1.push(Math.pow(element,3));
-  });
-
-  return newArray1;
+  return arr.map(value => Math.pow(value, 3));
 };
 
 /* ------------------------------------------------------------------------------------------------
@@ -24,9 +19,7 @@ Write a function named addOne that, given an array of numbers, uses map to retur
 ------------------------------------------------------------------------------------------------ */
 
 const addOne = (arr) => {
-  let newArray2 = arr.map(element => element + 1);
-
-  return newArray2;
+  return arr.map(value => value + 1);
 };
 
 /* ------------------------------------------------------------------------------------------------
@@ -36,9 +29,7 @@ Write a function named addQuestion that, given an array of strings, uses map to 
 ------------------------------------------------------------------------------------------------ */
 
 const addQuestion = (arr) => {
-  let newArray3 = arr.map(element => element + '?');
-
-  return newArray3;
+  return arr.map(value => `${value}?`);
 };
 
 /* ------------------------------------------------------------------------------------------------
@@ -52,12 +43,12 @@ For example, twoToThe([1,2,3]) returns [2,4,8] because 2 ^ 1 = 2, 2 ^ 2 = 4, and
 ------------------------------------------------------------------------------------------------ */
 
 const forLoopTwoToThe = (arr) => {
-  let newArray4 = [];
-  for (const element in arr) {
-    newArray4.push(Math.pow(2,arr[element]));
+  let newArr = [];
+  for(let i = 0; i < arr.length; i++){
+    newArr.push(Math.pow(2, arr[i]));
   }
 
-  return newArray4;
+  return newArr;
 };
 
 /* ------------------------------------------------------------------------------------------------
@@ -67,12 +58,10 @@ Write a function named forEachTwoToThe that produces the same output as your for
 ------------------------------------------------------------------------------------------------ */
 
 const forEachTwoToThe = (arr) => {
-  let newArray5 = [];
-  arr.forEach(element => {
-    newArray5.push(Math.pow(2,element));
-  });
+  let newArr = [];
+  arr.forEach(value => newArr.push(Math.pow(2, value)));
 
-  return newArray5;
+  return newArr;
 };
 
 /* ------------------------------------------------------------------------------------------------
@@ -82,9 +71,10 @@ Write a function named mapTwoToThe that produces the same output as your forLoop
 ------------------------------------------------------------------------------------------------ */
 
 const mapTwoToThe = (arr) => {
-  let newArray6 = arr.map(element => Math.pow(2,element));
+  let newArr = [];
+  arr.forEach(value => newArr.push(Math.pow(2, value)));
 
-  return newArray6;
+  return newArr;
 };
 
 /* ------------------------------------------------------------------------------------------------
