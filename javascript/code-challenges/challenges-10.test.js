@@ -8,7 +8,8 @@ Write a function named returnTen, takes in a string and uses split and splice to
 ------------------------------------------------------------------------------------------------ */
 
 function returnTen(str){
-  return str.split('').splice(str.length - 10);
+  let newArray = str.split('');
+  return newArray.splice(-10);
 }
 
 /* ------------------------------------------------------------------------------------------------
@@ -26,11 +27,9 @@ For example:
 return: 23
 ------------------------------------------------------------------------------------------------ */
 const findMax = (matrix) => {
-  let newArray = matrix.map(element => Math.max(...element));
-
-  return Math.max(...newArray);
-  // Not sure why combining everything above into one line is not working:
-  // return matrix.map(element => Math.max(...Math.max(...element)));
+  return matrix.flat().reduce((acc, val) => {
+    return acc > val ? acc = acc : acc = val;
+  });
 };
 
 /* ------------------------------------------------------------------------------------------------
@@ -48,13 +47,9 @@ For example:
 return: 35
 ------------------------------------------------------------------------------------------------ */
 const totalSum = (matrix) => {
-  let sum = 0;
-  for (let i = 0; i < matrix.length; i++) {
-    for (let j = 0; j < matrix[i].length; j++) {
-      sum += matrix[i][j];
-    }
-  }
-  return sum;
+  return matrix.flat().reduce((acc, val) => {
+    return acc = acc + val;
+  }, 0);
 };
 
 
@@ -81,10 +76,17 @@ const alkiBeach = [33, 31, 147, 130, 27, 93, 38, 126, 141, 63, 46, 17];
 const cookieStores = [firstPike, seaTac, seattleCenter, capHill, alkiBeach];
 
 const grandTotal = (stores) => {
-  let newArray = cookieStores[0].map(element => element*0);
-  stores.map(element => newArray.map((store,i) => newArray[i] = store + element[i]));
-
+  let newArray = [];
+  for(let i = 0; i < stores[0].length; i++) {
+    newArray.push(0);
+  }
+  stores.forEach(store => {
+    store.forEach((cph, i) => {
+      newArray[i] = cph + newArray[i];
+    });
+  });
   return newArray;
+
 };
 
 /* ------------------------------------------------------------------------------------------------
@@ -99,10 +101,12 @@ Write a function named salesData that uses forEach to iterate over the hourlySal
 
 const salesData = (hours, data) => {
   let newArray = [];
-  for (let i = 0; i < hours.length; i++){
-    newArray.push({ 'sales': data[i] + ' cookies', 'time': hours[i]});
-  }
-
+  hours.forEach((v,i) => {
+    newArray.push({
+      sales: `${data[i]} cookies`,
+      time: `${v}`,
+    });
+  });
   return newArray;
 };
 
