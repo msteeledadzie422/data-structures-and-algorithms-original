@@ -9,7 +9,9 @@ using the 'reduce' method.
 E.g. [4,2,7,5,9,2] -> 9
 ------------------------------------------------------------------------------------------------ */
 const maxInArray = (arr) => {
-  return arr.reduce((a,b) => Math.max(a,b));
+  return arr.reduce((acc, value) => {
+    return (acc < value ? acc = value : acc = acc);
+  }, 0);
 };
 
 /* ------------------------------------------------------------------------------------------------
@@ -37,7 +39,9 @@ Write a function named checkValues that takes in an object and a value and retur
 ------------------------------------------------------------------------------------------------ */
 
 const checkValues = (obj, value) => {
-  return Object.values(obj).includes(value);
+  for (const property in obj) {
+    return value === obj[property] ? true : false;
+  }
 };
 
 /* ------------------------------------------------------------------------------------------------
@@ -60,7 +64,9 @@ HR has asked you to change the data to make it easier to print so that it looks 
 ------------------------------------------------------------------------------------------------ */
 
 const updateNumbers = (obj) => {
-  return Object.entries(obj).map(element => element[0] + ': ' + element[1]);
+  for (const property in obj) {
+    return `${property}: ${obj[property]}`;
+  }
 };
 
 
@@ -115,12 +121,10 @@ const characters = [
 ];
 
 const getHouses = (arr) => {
-  // for...in was not working so used for...of
-
   let houses = [];
-  for (const prop of arr) {
-    houses.push(prop.house);
-  }
+  arr.forEach(i => {
+    houses.push(i.house);
+  });
 
   return houses;
 };
@@ -138,7 +142,6 @@ hasChildrenValues(characters, 'Sansa') will return false
 ------------------------------------------------------------------------------------------------ */
 
 const hasChildrenValues = (arr, character) => {
-  return Object.values(arr.filter(obj => obj.name === character)[0]).length >3;
 
 };
 
