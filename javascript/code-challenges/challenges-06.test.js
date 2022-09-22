@@ -23,7 +23,11 @@ Returns: ['dyoll', 'eimaj'];
 ------------------------------------------------------------------------------------------------ */
 
 const getNames = (arr) => {
-  return arr.map(element => element.name.split("").reverse().join(""));
+  return arr.map((obj) => {
+    let newarr = obj.name.split('');
+    newarr.reverse()
+    return newarr.join('');
+  });
 };
 
 /* ------------------------------------------------------------------------------------------------
@@ -34,10 +38,8 @@ Write a function that appends ' The end.' to a string, and returns the modified 
 ------------------------------------------------------------------------------------------------ */
 
 const appendTheEnd = (str) => {
-  let str2 = str;
-
-  return str2 + ' The end.';
-
+  let newstr = `${str} The end.`;
+  return newstr;
 };
 
 /* ------------------------------------------------------------------------------------------------
@@ -54,7 +56,9 @@ console.log(a) prints [1, 2, 3, 1]
 ------------------------------------------------------------------------------------------------ */
 
 const appendFirstToLast = (arr) => {
-  arr.push(arr[0]);
+  let firstel = arr[0];
+  arr.push(firstel);
+  return arr;
 };
 
 /* ------------------------------------------------------------------------------------------------
