@@ -25,7 +25,10 @@ let starWarsPeople = [
 ];
 
 const sortStarWarsCharacters = (starWarsArr) => {
-  return starWarsArr.sort((a,b) => b.height - a.height);
+  starWarsArr.sort((a, b) => {
+    return b.height - a.height;
+  });
+  return starWarsArr;
 };
 
 /* ------------------------------------------------------------------------------------------------
@@ -35,7 +38,7 @@ Write a function named removeThree that takes an index and an array. The functio
 ------------------------------------------------------------------------------------------------ */
 
 const removeThree = (idx, arr) => {
-  const arr2 = arr.splice(idx,3);
+  arr.splice(idx, 3);
   return arr;
 };
 
@@ -46,7 +49,8 @@ Write a function named joinArray that takes an array and joins all of the elemen
 ------------------------------------------------------------------------------------------------ */
 
 const joinArray = (arr) => {
-  return arr.join(" ");
+  let str = arr.join(' ');
+  return str;
 };
 
 /* ------------------------------------------------------------------------------------------------
@@ -64,10 +68,12 @@ For example, if the input is 'Welcome', the output will be:
 
 const howMuchPencil = (str) => {
   let result = [];
-  for (let i = 0; i<= str.length; i++) {
-    let string2 = str.slice(i);
-    result.push(string2);
+  let newStr = str;
+  for (let i = 0; i <= str.length; i++) {
+    result.push(newStr);
+    newStr = newStr.slice(1);
   }
+
   return result;
 };
 
@@ -80,7 +86,7 @@ For example, wordsToCharList('gregor') returns ['g','r','e','g','o','r'].
 ------------------------------------------------------------------------------------------------ */
 
 const wordsToCharList = (arr) => {
-  return arr.split("");
+  return  arr.split('');
 };
 
 
@@ -127,11 +133,11 @@ const gruffaloCrumble = {
 
 const listFoods = (recipe) => {
   let result = [];
-  for (let string of recipe.ingredients) {
-    let spaceOne = string.indexOf(" ");
-    let spaceTwo = string.indexOf(" ", spaceOne + 1);
-    result.push(string.slice(spaceTwo + 1));
-  }
+  recipe.ingredients.forEach((i)=>{
+    let secondSpace = i.indexOf(' ', 3)
+    result.push(i.slice(secondSpace + 1));
+  });
+
   return result;
 };
 
