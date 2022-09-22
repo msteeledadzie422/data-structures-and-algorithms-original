@@ -22,8 +22,11 @@ function lower(str) {
 }
 
 const updateAnimal = (arr, callback) => {
-  return arr.map(element => callback(element));
-
+  let newArr = [];
+  arr.forEach(x => {
+    newArr.push(callback(x));
+  });
+  return newArr;
 };
 
 /* ------------------------------------------------------------------------------------------------
@@ -35,7 +38,14 @@ For example: 'Cat' would come before 'apple'
 ------------------------------------------------------------------------------------------------ */
 
 const sortNames = (arr) => {
-  return arr.sort();
+  arr.sort( (a, b) => {
+    if (a < b) {
+      return -1;
+    } else {
+      return 1;
+    }
+  });
+  return arr;
 };
 
 /* ------------------------------------------------------------------------------------------------
@@ -47,7 +57,14 @@ HINT: Beware... JS default is "Lexical" ordering.
 ------------------------------------------------------------------------------------------------ */
 
 const sortNumbers = (arr) => {
-  return arr.sort((a,b) => a-b);
+  arr.sort( (a, b) => {
+    if(a < b) {
+      return -1;
+    } else{
+      return 1;
+    }
+  });
+  return arr;
 };
 
 /* ------------------------------------------------------------------------------------------------
@@ -59,7 +76,14 @@ HINT: Do it with a custom sort callback, not with using `.reverse()`. ;)
 ------------------------------------------------------------------------------------------------ */
 
 const sortBackwards = (arr) => {
-  return arr.sort((a,b) => b-a);
+  arr.sort( (a, b) => {
+    if(a > b) {
+      return -1;
+    } else{
+      return 1;
+    }
+  });
+  return arr;
 };
 
 /* ------------------------------------------------------------------------------------------------
@@ -73,7 +97,14 @@ For example, ['Alphabet', 'Zebra', 'alphabet', 'carrot'] is correctly sorted.
 ------------------------------------------------------------------------------------------------ */
 
 const alphabetize = (arr) => {
-  return arr.sort();
+  arr.sort( (a, b) => {
+    if(a < b) {
+      return -1;
+    } else{
+      return 1;
+    }
+  });
+  return arr;
 };
 
 /* ------------------------------------------------------------------------------------------------
@@ -90,7 +121,14 @@ Here is an example of the input:
 ------------------------------------------------------------------------------------------------ */
 
 const sortByPrice = (arr) => {
-  return arr.sort((a,b) => a.price-b.price);
+  arr.sort( (a, b) => {
+    if (a.price < b.price){
+      return -1;
+    } else {
+      return 1;
+    }
+  });
+  return arr;
 };
 
 /* ------------------------------------------------------------------------------------------------
