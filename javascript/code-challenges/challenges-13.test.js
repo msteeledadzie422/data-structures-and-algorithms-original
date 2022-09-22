@@ -7,11 +7,15 @@ Write a function named longestString that takes in an array of strings and retur
 ------------------------------------------------------------------------------------------------ */
 
 const longestString = (arr) => {
-  if (arr.length === 0){
-    return -1;
-  } else {
-    return arr.reduce((prev, curr, index) => arr[index].length > arr[prev].length ? index : prev , 0);
-  }
+  let strlen = 0;
+  let longest = -1;
+  arr.forEach((str, ind) => {
+    if(str.length > strlen) {
+      strlen = str.length;
+      longest = ind;
+    }
+  });
+  return longest;
 };
 
 /* ------------------------------------------------------------------------------------------------
@@ -23,7 +27,11 @@ For example, ['this is great :)', 'wow', 'whyyyyyy :(', ':)))))'] returns ['t', 
 ------------------------------------------------------------------------------------------------ */
 
 const firstLetters = (arr) => {
-  return arr.map(element => element.substring(0,1));
+  let newArray = [];
+  arr.forEach(str => {
+    newArray.push(str.slice(0, 1));
+  })
+  return newArray;
 };
 
 /* ------------------------------------------------------------------------------------------------
@@ -35,10 +43,16 @@ For example, ['this is great :)', 'wow', 'whyyyyyy :(', ':)))))'] returns ['this
 ------------------------------------------------------------------------------------------------ */
 
 const findHappiness = (arr) => {
-  return arr.filter(element => element.includes(':)'));
+  let newArray = [];
+  arr.forEach(str => {
+    if(str.includes(':)')){
+      newArray.push(str);
+    }
+  });
+  return newArray;
 };
 
-/* ------------------------------------------------------------------------------------------------
+/* ---------------------------------------v---------------------------------------------------------
 CHALLENGE 4
 
 Write a function named standardizePhoneNumbers that takes in an array of phone number strings in (XXX) XXX-XXXX format and returns an array with the phone number strings in XXXXXXXXXX format.
@@ -47,7 +61,7 @@ For example, (123) 456-7890 returns 1234567890
 ------------------------------------------------------------------------------------------------ */
 
 const standardizePhoneNumbers = (arr) => {
-  return arr.map(el => el.replace(/[ ()-]/g, ''));
+
 };
 
 /* ------------------------------------------------------------------------------------------------
@@ -59,13 +73,13 @@ For example, 'abcdefg' returns 'bdf'
 ------------------------------------------------------------------------------------------------ */
 
 const onlyOddChars = (str) => {
-  let output = '';
+  let tempStr = '';
   for(let i = 0; i < str.length; i++){
-    if (i % 2){
-      output += str[i];
+    if((i % 2 == 0) == false){
+      tempStr = tempStr + str[i];
     }
   }
-  return output;
+  return tempStr;
 };
 
 /* ------------------------------------------------------------------------------------------------
@@ -75,12 +89,13 @@ Write a function named allHappy that takes in an array of strings and returns a 
 ------------------------------------------------------------------------------------------------ */
 
 const allHappy = (arr) => {
-  for (let word of arr){
-    if (!word.includes(':)')){
-      return false;
+  let isHappy = true;
+  arr.forEach(str => {
+    if(!str.includes(':)')){
+      isHappy = false;
     }
-  }
-  return true;
+  });
+  return isHappy;
 };
 
 /* ------------------------------------------------------------------------------------------------
