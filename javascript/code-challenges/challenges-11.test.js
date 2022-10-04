@@ -26,7 +26,7 @@ function transformToLis(obj){
     newArray.push(`${tag}${key}: ${value}${closingTag}`);
   }
   return newArray;
-};
+}
 
 /* ------------------------------------------------------------------------------------------------
 CHALLENGE 2
@@ -87,9 +87,9 @@ const divisibleByFiveTwoToThePower = (input) => {
   input.forEach(secondArray => {
     let newNestedArray = [];
     secondArray.map(value => {
-      if(typeof value != typeof 5 ){
+      if(typeof value !== typeof 5 ){
         return;
-      } else if (value % 5 != 0 ){
+      } else if (value % 5 !== 0 ){
         return;
       } else {
         newNestedArray.push(Math.pow(2, value));
@@ -164,9 +164,9 @@ let starWarsData = [{
 
 let findMaleAndFemale = (data) => {
   let newStr = '';
-  data.forEach((v, i) => {
-    if(v.gender == 'male' || v.gender == 'female' ) {
-      newStr = newStr + `${v.name},`
+  data.forEach((v) => {
+    if(v.gender === 'male' || v.gender === 'female' ) {
+      newStr = newStr + `${v.name},`;
     }
   });
   let chainResult = newStr.slice(0, -1).split(',')
