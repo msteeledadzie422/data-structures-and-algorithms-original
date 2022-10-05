@@ -1,6 +1,6 @@
 'use strict';
 
-const { LinkedList, zipLists } = require('../index');
+const { LinkedList, zipLists } = require('./challenge');
 
 function createList (arr){
   let list = new LinkedList;
