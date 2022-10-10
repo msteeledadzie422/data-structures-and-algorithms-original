@@ -16,7 +16,7 @@ If the correct closing bracket is located in the strinkg, return true, else retu
 
 ## Solution
 
-// Only have about the first have so far
+// Only have about the first half so far
 
 function validateBrackets (string) {
  let openArray = [ '[', '(', '{'];
